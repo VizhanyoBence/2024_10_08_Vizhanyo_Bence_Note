@@ -45,10 +45,20 @@
 
 </table>
 <h2>adatok beküldés</h2>
-<form action="/action_page.php">
-    <label for="fname">First name:</label>
-    <input type="text" id="product_name" name="fname"><br><br>
-    <input type="sumbit" value="Sumbit"><br><br>
+<form action="/" method="POST">
+    <label form="fname">First name:</label>
+    <input type="text" id="product_name" name="product_name"><br><br>
+    <button type="sumbit">Submit</button>
 </form>
+
+    {% if products_ %}
+        <h2>Beküldött adat</h2>
+        <ul>
+        {% for product in products_ %}
+            <li> {{product}} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
 </body>
 </html>
