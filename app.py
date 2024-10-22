@@ -1,18 +1,48 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
-products=[]
-@app.route('/', methods=['POST', 'GET'])
+
+products = []
+
+@app.route('/', methods=["GET"])
 def index():
-    name = None
-    if request.method == "POST":
-        name = request.form.get('product_name') 
-        products.append(name)
-    return render_template('index.html', products_=products)
-@app.route('/submit_products', methods=['POST'])
-def index():
-        name = request.form.get('product_name')
-        products.append(name)
-        return redirect(url_for('index'))
-if __name__== "__main__":
+    return render_template('index.html')
+
+
+@app.route('/submit_products', methods=["POST"])
+def submit_products():
+    name = request.form.get("product_name")
+    products.append(name)
+    return redirect(url_for('index'))
+
+@app.route('/products')
+def get_products():
+    return render_template('products.html', products_=products)
+
+
+@app.route('/signup')
+def signup():
+    if request.method == "post"
+    user_data = {
+        'fullname': request.form.get('fullname')
+        'email': request.form.get('email')
+        'password': request.form.get('password')
+        'phone': request.form.get('phone')
+        'gender': request.form.get('gender')
+        'color': request.form.get('color')
+        'profile_pic': request.form.get('profile_pic')
+        'Born_date': request.form.get('Born_date')
+        'actual_time': request.form.get('actual_time')
+        'interest': request.form.get('interest')
+
+
+
+
+
+
+
+    }
+    return render_template('signup_from.html')
+
+if __name__ == "__main__":
     app.run(debug=True)
